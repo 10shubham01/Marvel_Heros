@@ -5,6 +5,7 @@ import { Plus } from "react-feather";
 import { Modal } from "react-responsive-modal";
 import { Form, Button } from "react-bootstrap";
 import "react-responsive-modal/styles.css";
+import { Link } from "react-router-dom";
 
 class CardContainer extends Component {
   constructor(props) {
@@ -71,7 +72,9 @@ class CardContainer extends Component {
       <div className="parent">
         <div className="card-container">
           {Cards.map((card) => (
-            <Card bkImage={card.img_Url} card={card} />
+            <Link to={`/${card.id}`}>
+              <Card bkImage={card.img_Url} card={card} />
+            </Link>
           ))}
         </div>
         <div className="add-button">
