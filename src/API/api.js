@@ -19,8 +19,8 @@ export function getOneCard(cardId) {
 }
 export function updateCard(cardId, body) {
   return axios
-    .post(
-      `https://peaceful-sea-07051.herokuapp.com/api/marvel/card${cardId}`,
+    .put(
+      `https://peaceful-sea-07051.herokuapp.com/api/marvel/card/${cardId}`,
       body
     )
     .then((resp) => resp.data);

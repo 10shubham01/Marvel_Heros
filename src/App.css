@@ -3,7 +3,7 @@
   background-image: url("https://static.wallhaven.cc/images/layout/bg-dark-grain.png");
   background-repeat: repeat;
   height: 100vh;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .nav-bar {
@@ -57,6 +57,27 @@
   cursor: pointer;
   border-radius: 10px;
   box-shadow: inset 0 0 30px rgb(78, 78, 78);
+}
+
+a {
+  text-decoration: none;
+}
+
+.card-heading>h1 {
+  padding-top: 2%;
+  font-family: 'Luckiest Guy', cursive;
+  color: white;
+  writing-mode: vertical-rl;
+  transform: translateX(-50px);
+  visibility: hidden;
+  opacity: 0;
+  transition: all .5s;
+}
+
+.carD:hover .card-heading>h1 {
+  transform: translateX(0px);
+  visibility: visible;
+  opacity: 1;
 }
 
 .add-button {
@@ -130,6 +151,8 @@
   height: 80vh;
   width: 60%;
   border-radius: 5px;
+  box-shadow: inset 0 0 30px rgb(78, 78, 78);
+  padding: 1%;
 }
 
 .popup-header {
@@ -146,7 +169,6 @@
 }
 
 .popup-header>input {
-  padding-top: 1%;
   width: 100%;
   background-color: transparent;
   color: #fff;
@@ -156,12 +178,19 @@
 }
 
 .main-box {
-  width: 55%;
+  width: 60%;
+  height: 100%;
   display: flex;
 }
 
 .content {
   width: 100%;
+  height: 85%;
+  overflow: auto;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
 }
 
 .main-box>.content>* textarea {
@@ -196,7 +225,9 @@
   background-color: transparent;
   border: none;
   color: #fff;
-}.image>img {
+}
+
+.image>img {
   position: absolute;
   top: 0;
   right: 0;
@@ -208,6 +239,7 @@
 @media (max-width: 700px) {
   .card-container {
     grid-template-columns: 1fr;
+    width: 90%;
   }
   .carD {
     width: auto;
@@ -221,5 +253,24 @@
     bottom: 0;
     right: 0;
     cursor: pointer;
+  }
+  .popup {
+    /* background-color: red; */
+    height: auto;
+    width: 95%;
+  }
+  .image>img {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 0;
+  }
+  .main-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
   }
 }
