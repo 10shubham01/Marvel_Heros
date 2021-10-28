@@ -7,7 +7,7 @@ class Card extends Component {
   render() {
     return (
       <div
-        className="card"
+        className="carD"
         style={{
           backgroundImage: "url(" + this.props.bkImage + ")",
         }}

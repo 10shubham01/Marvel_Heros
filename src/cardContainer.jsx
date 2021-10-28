@@ -3,6 +3,7 @@ import Card from "./card";
 import * as Marvel from "./API/api";
 import { Plus } from "react-feather";
 import { Modal } from "react-responsive-modal";
+import { Form, Button } from "react-bootstrap";
 import "react-responsive-modal/styles.css";
 
 class CardContainer extends Component {
@@ -11,17 +12,55 @@ class CardContainer extends Component {
     this.state = {
       Cards: [],
       openModal: false,
+      Character_name: "",
+      Superpowers: "",
+      Year_Created: "",
+      Description: "",
+      How_he_got_his_Power: "",
+      Did_You_Know: "",
+      img_Url: "",
     };
   }
+  /* ---------------------------- */
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   onClickButton = (e) => {
     e.preventDefault();
     this.setState({ openModal: true });
   };
 
   onCloseModal = () => this.setState({ openModal: false });
+  /* --------------------------- */
+
   getCards = async () => {
     const Cards = await Marvel.getAllCards();
     this.setState({ Cards });
+  };
+  addCard = async (body) => {
+    const newCard = await Marvel.createCard(body);
+    this.setState({ Cards: [...this.state.Cards, newCard] });
+  };
+  onAddCard = () => {
+    const body = {
+      Character_name: this.state.Character_name,
+      Superpowers: this.state.Superpowers,
+      Year_Created: this.state.Year_Created,
+      Description: this.state.Description,
+      How_he_got_his_Power: this.state.How_he_got_his_Power,
+      Did_You_Know: this.state.Did_You_Know,
+      img_Url: this.state.img_Url,
+    };
+    this.addCard(body);
+    this.setState({ Character_name: "" });
+    this.setState({ Superpowers: "" });
+    this.setState({ Year_Created: "" });
+    this.setState({ Description: "" });
+    this.setState({ How_he_got_his_Power: "" });
+    this.setState({ Did_You_Know: "" });
+    this.setState({ img_Url: "" });
+    this.onCloseModal();
   };
   componentDidMount() {
     this.getCards();
@@ -43,7 +82,80 @@ class CardContainer extends Component {
           open={this.state.openModal}
           onClose={this.onCloseModal}
         >
-          <h1>hello</h1>
+          <h3>Add Character</h3>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Control
+                type="text"
+                placeholder="Character Name"
+                value={this.Character_name}
+                name="Character_name"
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Control
+                type="text"
+                placeholder="Super Powers"
+                value={this.Superpowers}
+                name="Superpowers"
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Control
+                type="text"
+                placeholder="Year_Created"
+                value={this.Year_Created}
+                name="Year_Created"
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Description"
+                value={this.Description}
+                name="Description"
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Control
+                type="text"
+                placeholder="How he got his Power"
+                value={this.How_he_got_his_Power}
+                name="How_he_got_his_Power"
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Control
+                type="text"
+                placeholder="Did You Know"
+                value={this.Did_You_Know}
+                name="Did_You_Know"
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Control
+                type="text"
+                placeholder="Img Url"
+                value={this.img_Url}
+                name="img_Url"
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Button variant="primary" onClick={this.onAddCard}>
+              Add Character
+            </Button>
+          </Form>
         </Modal>
       </div>
     );
