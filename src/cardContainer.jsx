@@ -20,13 +20,26 @@ class CardContainer extends Component {
       How_he_got_his_Power: "",
       Did_You_Know: "",
       img_Url: "",
+      searchValue: "",
     };
   }
   /* ---------------------------- */
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
+  handleSearch = (e) => {
+    this.setState({ searchValue: e.target.value });
+    if (e.keyCode === 13) {
+      const filtervalue = this.state.Cards.filter(
+        (f) =>
+          f.Character_name.toLowerCase() ===
+          this.state.searchValue.toLowerCase()
+      );
+      this.setState({
+        Cards: filtervalue,
+      });
+    }
+  };
   onClickButton = (e) => {
     e.preventDefault();
     this.setState({ openModal: true });
@@ -63,6 +76,12 @@ class CardContainer extends Component {
     this.setState({ img_Url: "" });
     this.onCloseModal();
   };
+  deleteCard = async (cardId) => {
+    await Marvel.deleteCard(cardId);
+    this.setState({
+      Cards: this.state.Cards.filter((f) => f.id !== cardId),
+    });
+  };
   componentDidMount() {
     this.getCards();
   }
@@ -70,10 +89,23 @@ class CardContainer extends Component {
     const { Cards } = this.state;
     return (
       <div className="parent">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={this.searchValue}
+            onKeyUp={this.handleSearch}
+          />
+        </div>
         <div className="card-container">
           {Cards.map((card) => (
             <Link to={`/${card.id}`}>
-              <Card bkImage={card.img_Url} card={card} />
+              <Card
+                bkImage={card.img_Url}
+                card={card}
+                deleteCard={this.deleteCard}
+                key={card.id}
+              />
             </Link>
           ))}
         </div>
@@ -155,7 +187,10 @@ class CardContainer extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Button variant="primary" onClick={this.onAddCard}>
+            <Button
+              style={{ backgroundColor: "#EC1D24", border: "none" }}
+              onClick={this.onAddCard}
+            >
               Add Character
             </Button>
           </Form>

@@ -56,7 +56,6 @@ class Popup extends Component {
     this.getCard(this.props.match.params.id);
   }
   render() {
-    const { card } = this.state;
     return (
       <div className="popup-window">
         <div className="popup">

@@ -25,3 +25,10 @@ export function updateCard(cardId, body) {
     )
     .then((resp) => resp.data);
 }
+export function deleteCard(cardId) {
+  return axios
+    .delete(
+      `https://peaceful-sea-07051.herokuapp.com/api/marvel/card/${cardId}`
+    )
+    .then((resp) => resp.data);
+}
