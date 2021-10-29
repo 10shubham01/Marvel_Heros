@@ -5,7 +5,7 @@ import { Plus } from "react-feather";
 
 import { Modal } from "react-responsive-modal";
 import { Form, Button } from "react-bootstrap";
-// import "react-responsive-modal/styles.css";
+
 class Weapons extends Component {
   constructor(props) {
     super(props);

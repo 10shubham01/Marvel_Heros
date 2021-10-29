@@ -136,34 +136,31 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-
   background-color: #EC1D24;
   border-radius: 10px;
 }
 
 .react-responsive-modal-modal {
   color: #fff;
-  width: 50%  !important ;
-  padding: 15%;
-  max-height:90vh ;
+  width: 50%;
+ 
+  border-radius: 1%;
+  max-height: 90vh;
   text-align: left;
   vertical-align: middle;
-  background: transparent !important;
+  background: #EC1D24!important;
   box-shadow: 0 12px 15px 0 rgb(0 0 0 / 25%);
   position: relative;
   overflow-y: auto;
 }
 
 .react-responsive-modal-closeButton {
-  position: fixed;
-  top: 14 px;
-  right: 14 px;
-  border: none;
-  padding: 0;
   cursor: pointer;
   background-color: white !important;
-  display: flex;
+
 }
+
+
 
 .react-responsive-modal-modal>Form {
   padding-top: 5%;
@@ -309,10 +306,10 @@ a {
 }
 
 .add-weapon-btn {
-cursor: pointer;
-color: #fff;
-
+  cursor: pointer;
+  color: #fff;
 }
+
 @media (max-width: 700px) {
   .card-container {
     grid-template-columns: 1fr;

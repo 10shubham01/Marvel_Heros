@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "react-responsive-modal/styles.css";
 import "./App.css";
 import NavBar from "./navbar";
 import CardContainer from "./cardContainer";
