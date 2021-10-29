@@ -136,16 +136,16 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  /* background-image: url("https://static.wallhaven.cc/images/layout/bg-dark-grain.png"); */
+
   background-color: #EC1D24;
   border-radius: 10px;
 }
 
 .react-responsive-modal-modal {
   color: #fff;
-  width: 50%;
+  width: 50%  !important ;
   padding: 15%;
-  height: auto;
+  max-height:90vh ;
   text-align: left;
   vertical-align: middle;
   background: transparent !important;
