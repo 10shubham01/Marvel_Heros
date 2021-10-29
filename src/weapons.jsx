@@ -97,7 +97,11 @@ class Weapons extends Component {
             </Form.Group>
 
             <Button
-              style={{ backgroundColor: "#EC1D24", border: "none" }}
+              style={{
+                backgroundColor: "#EC1D24",
+                border: "none",
+                boxShadow: "inset 0 0 5px black",
+              }}
               onClick={this.onAddWeapon}
             >
               Add Weapon
