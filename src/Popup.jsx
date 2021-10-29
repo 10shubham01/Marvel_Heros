@@ -67,7 +67,7 @@ class Popup extends Component {
               onChange={this.handleChange}
             />
             <button>
-              <X size={48} onClick={this.props.history.goBack} />
+              <X size={40} onClick={this.props.history.goBack} />
             </button>
           </div>
           <div className="main-box">
@@ -130,7 +130,7 @@ class Popup extends Component {
             className="saveButton"
             style={{ display: this.state.saveButton ? "block" : "none" }}
           >
-            <Save size={48} onClick={this.onSaveCard} />
+            <Save size={32} onClick={this.onSaveCard} />
           </button>
         </div>
       </div>

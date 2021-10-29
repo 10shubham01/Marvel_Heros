@@ -63,7 +63,7 @@ class Weapons extends Component {
           <Weapon weapon={weapon} delete={this.deleteWeapon} />
         ))}
         <div className="add-weapon-btn">
-          <Plus size={48} onClick={this.onClickButton} />
+          <Plus size={32} onClick={this.onClickButton} />
         </div>
         <Modal
           classNames="modal"
