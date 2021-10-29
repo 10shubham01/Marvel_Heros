@@ -41,13 +41,17 @@ class Weapons extends Component {
     this.setState({ Weapon_name: "" });
     this.setState({ description: "" });
     this.setState({ img_Url: "" });
-
     this.onCloseModal();
   };
   getWeapons = async (cardId) => {
     const Weapons = await Marvel.getWeapons(cardId);
-
     this.setState({ Weapons });
+  };
+  deleteWeapon = async (weaponId) => {
+    await Marvel.deleteWeapon(weaponId);
+    this.setState({
+      Weapons: this.state.Weapons.filter((f) => f.id !== weaponId),
+    });
   };
   componentDidMount() {
     this.getWeapons(this.props.cardId);
@@ -56,7 +60,7 @@ class Weapons extends Component {
     return (
       <div>
         {this.state.Weapons.map((weapon) => (
-          <Weapon weapon={weapon} />
+          <Weapon weapon={weapon} delete={this.deleteWeapon} />
         ))}
         <div className="add-weapon-btn">
           <Plus size={48} onClick={this.onClickButton} />

@@ -4,7 +4,8 @@ import * as Marvel from "./API/api";
 import { Plus } from "react-feather";
 import { Modal } from "react-responsive-modal";
 import { Form, Button } from "react-bootstrap";
-// import "react-responsive-modal/styles.css";
+import { Trash2 } from "react-feather";
+
 import { Link } from "react-router-dom";
 
 class CardContainer extends Component {
@@ -29,16 +30,6 @@ class CardContainer extends Component {
   };
   handleSearch = (e) => {
     this.setState({ searchValue: e.target.value });
-    if (e.keyCode === 13) {
-      const filtervalue = this.state.Cards.filter(
-        (f) =>
-          f.Character_name.toLowerCase() ===
-          this.state.searchValue.toLowerCase()
-      );
-      this.setState({
-        Cards: filtervalue,
-      });
-    }
   };
   onClickButton = (e) => {
     e.preventDefault();
@@ -98,15 +89,32 @@ class CardContainer extends Component {
           />
         </div>
         <div className="card-container">
-          {Cards.map((card) => (
-            <Link to={`/${card.id}`}>
-              <Card
-                bkImage={card.img_Url}
-                card={card}
-                deleteCard={this.deleteCard}
-                key={card.id}
-              />
-            </Link>
+          {Cards.filter((card) => {
+            if (this.state.searchValue === "") {
+              return card;
+            } else if (
+              card.Character_name.toLowerCase().includes(this.state.searchValue)
+            ) {
+              return card;
+            }
+          }).map((card) => (
+            <div className="card-parent">
+              <Link to={`/${card.id}`}>
+                <Card
+                  bkImage={card.img_Url}
+                  card={card}
+                  //   deleteCard={this.deleteCard}
+                  key={card.id}
+                />
+              </Link>
+              <div className="deletebutton">
+                <Trash2
+                  size={28}
+                  color="white"
+                  onClick={() => this.deleteCard(card.id)}
+                />
+              </div>
+            </div>
           ))}
         </div>
         <div className="add-button">

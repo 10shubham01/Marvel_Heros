@@ -47,3 +47,11 @@ export function addWeapon(cardId, body) {
     )
     .then((resp) => resp.data);
 }
+
+export function deleteWeapon(weaponId) {
+  return axios
+    .delete(
+      `https://peaceful-sea-07051.herokuapp.com/api/marvel/weapon/${weaponId}`
+    )
+    .then((resp) => resp.data);
+}

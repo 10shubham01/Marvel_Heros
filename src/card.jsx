@@ -17,13 +17,6 @@ class Card extends Component {
         <div className="card-heading">
           <h1>{this.props.card.Character_name}</h1>
         </div>
-        <div className="deletebutton">
-          <Trash2
-            size={28}
-            color="white"
-            onClick={() => this.props.deleteCard(this.props.card.id)}
-          />
-        </div>
       </div>
     );
   }
