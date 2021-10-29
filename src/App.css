@@ -50,9 +50,11 @@
   /* text-align: center; */
 }
 
-.search-bar>input:focus{
+.search-bar>input:focus {
   outline: none;
-}.card-container {
+}
+
+.card-container {
   position: absolute;
   top: 16vh;
   left: 0;
@@ -99,7 +101,6 @@ a {
   bottom: 2%;
   right: 2%;
   transform: translateY(-50px);
-  z-index: 2;
   visibility: hidden;
   opacity: 0;
   transition: all .5s;
@@ -144,7 +145,7 @@ a {
   color: #fff;
   width: 50%;
   padding: 15%;
-  height: 90vh;
+  height: auto;
   text-align: left;
   vertical-align: middle;
   background: transparent !important;
@@ -275,6 +276,43 @@ a {
   z-index: 0;
 }
 
+.weapon-card {
+  padding: 1%;
+  height: 18vh;
+  width: 95%;
+  display: grid;
+  grid-gap: 1%;
+  grid-template-columns: .5fr 1.5fr;
+  color: #fff;
+}
+
+.weapon-card>.weapon-image>img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 5%;
+}
+
+.weapon-card>.weapon-content {
+  padding: 1%;
+  height: 100px;
+  overflow: auto;
+  margin-right: 5px;
+}
+
+.weapon-card>.weapon-content>h6 {
+  font-family: 'Luckiest Guy', cursive;
+}
+
+.weapon-card>.weapon-content>p {
+  font-size: 12px;
+}
+
+.add-weapon-btn {
+cursor: pointer;
+color: #fff;
+
+}
 @media (max-width: 700px) {
   .card-container {
     grid-template-columns: 1fr;

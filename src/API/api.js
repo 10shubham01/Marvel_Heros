@@ -32,3 +32,18 @@ export function deleteCard(cardId) {
     )
     .then((resp) => resp.data);
 }
+export function getWeapons(cardId) {
+  return axios
+    .get(
+      `https://peaceful-sea-07051.herokuapp.com/api/marvel/weapons/${cardId}`
+    )
+    .then((resp) => resp.data);
+}
+export function addWeapon(cardId, body) {
+  return axios
+    .post(
+      `https://peaceful-sea-07051.herokuapp.com/api/marvel/weapon/${cardId}`,
+      body
+    )
+    .then((resp) => resp.data);
+}

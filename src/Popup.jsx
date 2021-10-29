@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import * as Marvel from "./API/api";
 import { X, Save } from "react-feather";
-
+import Weapons from "./weapons";
 class Popup extends Component {
   constructor(props) {
     super(props);
@@ -116,6 +116,10 @@ class Popup extends Component {
                   name="Did_You_Know"
                   onChange={this.handleChange}
                 ></textarea>
+              </div>
+              <div className="weapons">
+                <h5>Weapons</h5>
+                <Weapons cardId={this.props.match.params.id} />
               </div>
             </div>
             <div className="image">
