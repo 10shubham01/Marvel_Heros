@@ -265,7 +265,7 @@ a {
   top: 0;
   right: 0;
   height: 100%;
-  width: auto;
+  max-width: 35%;
   z-index: 0;
 }
 
@@ -339,7 +339,7 @@ a {
     position: relative;
     top: 0;
     right: 0;
-    width: 100%;
+    max-width: 100%;
     z-index: 0;
   }
   .main-box {
