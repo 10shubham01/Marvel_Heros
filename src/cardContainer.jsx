@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Card from "./card";
 import * as Marvel from "./API/api";
-import { LifeBuoy, Plus } from "react-feather";
+import { Plus } from "react-feather";
 import { Modal } from "react-responsive-modal";
-import { Form, Button, Spinner } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { Trash2 } from "react-feather";
 
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 class CardContainer extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class CardContainer extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   handleSearch = (e) => {
-    this.setState({ searchValue: e.target.value });
+    this.setState({ searchValue: e.target.value.toLowerCase() });
   };
   onClickButton = (e) => {
     e.preventDefault();
@@ -38,6 +39,7 @@ class CardContainer extends Component {
   };
 
   onCloseModal = () => this.setState({ openModal: false });
+  notify = (msg) => toast(msg);
   /* --------------------------- */
 
   getCards = async () => {
@@ -47,6 +49,9 @@ class CardContainer extends Component {
   };
   addCard = async (body) => {
     const newCard = await Marvel.createCard(body);
+    if (newCard) {
+      this.notify("A new card added!!!");
+    }
     this.setState({ Cards: [...this.state.Cards, newCard] });
   };
   onAddCard = () => {
@@ -71,6 +76,8 @@ class CardContainer extends Component {
   };
   deleteCard = async (cardId) => {
     await Marvel.deleteCard(cardId);
+    this.notify("Card deleted !!!");
+
     this.setState({
       Cards: this.state.Cards.filter((f) => f.id !== cardId),
     });
@@ -239,6 +246,17 @@ class CardContainer extends Component {
               </Button>
             </Form>
           </Modal>
+          <ToastContainer
+            position="top-center"
+            autoClose={1000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </div>
       );
     }
