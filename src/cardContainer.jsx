@@ -45,7 +45,9 @@ class CardContainer extends Component {
   getCards = async () => {
     const Cards = await Marvel.getAllCards();
     this.setState({ Cards });
-    this.setState({ dataLoad: true });
+    setTimeout(() => {
+      this.setState({ dataLoad: true });
+    }, 3000);
   };
   addCard = async (body) => {
     const newCard = await Marvel.createCard(body);
@@ -118,14 +120,14 @@ class CardContainer extends Component {
               ) {
                 return card;
               }
-            }).map((card) => (
+            }).map((card, index) => (
               <div className="card-parent">
                 <Link to={`/${card.id}`}>
                   <Card
                     bkImage={card.img_Url}
                     card={card}
                     //   deleteCard={this.deleteCard}
-                    key={card.id}
+                    key={index}
                   />
                 </Link>
                 <div className="deletebutton">

@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import * as Marvel from "./API/api";
 import { X, Save } from "react-feather";
 import Weapons from "./weapons";
+import Skeleton from "@mui/material/Skeleton";
+import Box from "@mui/material/Box";
 class Popup extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +17,7 @@ class Popup extends Component {
       Superpowers: "",
       Year_Created: "",
       saveButton: false,
+      loading: false,
     };
   }
   handleChange = (e) => {
@@ -31,6 +34,7 @@ class Popup extends Component {
     this.setState({ Superpowers: card.Superpowers });
     this.setState({ img_Url: card.img_Url });
     this.setState({ Year_Created: card.Year_Created });
+    this.setState({ loading: true });
   };
   updateCard = async (cardId, body) => {
     const newCard = await Marvel.updateCard(cardId, body);
@@ -74,52 +78,99 @@ class Popup extends Component {
             <div className="content">
               <div className="year">
                 <h5>Year Created</h5>
-                <textarea
-                  value={this.state.Year_Created}
-                  name="Year_Created"
-                  onChange={this.handleChange}
-                  style={{ resize: "none" }}
-                ></textarea>
+                {this.state.loading ? (
+                  <textarea
+                    value={this.state.Year_Created}
+                    name="Year_Created"
+                    onChange={this.handleChange}
+                    style={{ resize: "none" }}
+                  ></textarea>
+                ) : (
+                  <Box>
+                    <Skeleton />
+                    <Skeleton animation="wave" />
+                  </Box>
+                )}
               </div>
               <div className="power">
                 <h5>Super Powers</h5>
-                <textarea
-                  value={this.state.Superpowers}
-                  name="Superpowers"
-                  onChange={this.handleChange}
-                  style={{ resize: "none" }}
-                ></textarea>
+                {this.state.loading ? (
+                  <textarea
+                    value={this.state.Superpowers}
+                    name="Superpowers"
+                    onChange={this.handleChange}
+                    style={{ resize: "none" }}
+                  ></textarea>
+                ) : (
+                  <Box>
+                    <Skeleton />
+                    <Skeleton animation="wave" />
+                    <Skeleton animation={false} />
+                  </Box>
+                )}
               </div>
               <div className="desc">
                 <h5>Description</h5>
-                <textarea
-                  value={this.state.Description}
-                  name="Description"
-                  onChange={this.handleChange}
-                  style={{ resize: "none" }}
-                ></textarea>
+                {this.state.loading ? (
+                  <textarea
+                    value={this.state.Description}
+                    name="Description"
+                    onChange={this.handleChange}
+                    style={{ resize: "none" }}
+                  ></textarea>
+                ) : (
+                  <Box>
+                    <Skeleton />
+                    <Skeleton animation="wave" />
+                    <Skeleton animation={false} />
+                  </Box>
+                )}
               </div>
               <div className="how">
                 <h5>How he got his power</h5>
-                <textarea
-                  value={this.state.How_he_got_his_Power}
-                  name="How_he_got_his_Power"
-                  onChange={this.handleChange}
-                  style={{ resize: "none" }}
-                ></textarea>
+                {this.state.loading ? (
+                  <textarea
+                    value={this.state.How_he_got_his_Power}
+                    name="How_he_got_his_Power"
+                    onChange={this.handleChange}
+                    style={{ resize: "none" }}
+                  ></textarea>
+                ) : (
+                  <Box>
+                    <Skeleton />
+                    <Skeleton animation="wave" />
+                    <Skeleton animation={false} />
+                  </Box>
+                )}
               </div>
               <div className="did">
                 <h5>Did you know ?</h5>
-                <textarea
-                  value={this.state.Did_You_Know}
-                  style={{ resize: "none" }}
-                  name="Did_You_Know"
-                  onChange={this.handleChange}
-                ></textarea>
+                {this.state.loading ? (
+                  <textarea
+                    value={this.state.Did_You_Know}
+                    style={{ resize: "none" }}
+                    name="Did_You_Know"
+                    onChange={this.handleChange}
+                  ></textarea>
+                ) : (
+                  <Box>
+                    <Skeleton />
+                    <Skeleton animation="wave" />
+                    <Skeleton animation={false} />
+                  </Box>
+                )}
               </div>
               <div className="weapons">
                 <h5>Weapons</h5>
-                <Weapons cardId={this.props.match.params.id} />
+                {this.state.loading ? (
+                  <Weapons cardId={this.props.match.params.id} />
+                ) : (
+                  <Box>
+                    <Skeleton />
+                    <Skeleton animation="wave" />
+                    <Skeleton animation={false} />
+                  </Box>
+                )}
               </div>
             </div>
             <div className="image">
