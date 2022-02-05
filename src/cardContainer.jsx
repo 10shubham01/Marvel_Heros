@@ -121,13 +121,13 @@ class CardContainer extends Component {
                 return card;
               }
             }).map((card, index) => (
-              <div className="card-parent">
+              <div className="card-parent" key={card.id}>
                 <Link to={`/${card.id}`}>
                   <Card
                     bkImage={card.img_Url}
                     card={card}
                     //   deleteCard={this.deleteCard}
-                    key={index}
+                    key={card.id}
                   />
                 </Link>
                 <div className="deletebutton">

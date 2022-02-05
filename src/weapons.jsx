@@ -60,7 +60,7 @@ class Weapons extends Component {
     return (
       <div>
         {this.state.Weapons.map((weapon) => (
-          <Weapon weapon={weapon} delete={this.deleteWeapon} />
+          <Weapon weapon={weapon} delete={this.deleteWeapon} key={weapon.id} />
         ))}
         <div className="add-weapon-btn">
           <Plus size={32} onClick={this.onClickButton} />
